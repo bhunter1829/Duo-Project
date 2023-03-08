@@ -50,7 +50,8 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return account_id == account.account_id && username.equals(account.username) && password.equals(account.password);
+        return account_id == account.account_id && username.equals(account.username)
+                && password.equals(account.password);
     }
 
     @Override

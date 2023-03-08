@@ -1,14 +1,16 @@
 package Controller;
-import Service.BalanceService;
+import Service.TransactionsService;
 import Service.AccountService;
+import Model.Transactions;
+import Model.Account;
 import io.javalin.Javalin;
 
 public class BankAccountController {
     AccountService accountService;
-    BalanceService balanceService;
+    TransactionsService transactionsService;
     public BankAccountController(){
         this.accountService = new AccountService();
-        this.balanceService = new BalanceService();
+        this.transactionsService = new TransactionsService();
     }
     public Javalin startAPI() {
 
