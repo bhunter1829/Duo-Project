@@ -31,6 +31,9 @@ public class Transactions {
         this.user_id = user_id;
     }
 
+    public Transactions(int balance, int userId) {
+    }
+
     public int getTransaction_id(){
         return transaction_id;
     }
