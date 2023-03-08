@@ -3,7 +3,7 @@
 DROP TABLE if exists Accounts;
 --then create your tables
 CREATE TABLE Accounts(
-    AccountID int,
-    FirstName varchar(255),
-    LastName varchar(255)
+    account_id int primary key auto_increment,
+    username varchar(255) unique,
+    password varchar(255)
 );
