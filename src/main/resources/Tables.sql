@@ -3,8 +3,16 @@
 DROP TABLE if exists Accounts;
 --then create your tables
 CREATE TABLE Accounts(
-    AccountID int,
-    FirstName varchar(255),
-    LastName varchar(255),
-    Balance int
+    account_id int primary key auto_increment,
+    username varchar(255),
+    password varchar(255)
 );
+
+CREATE TABLE Balance(
+    transaction_id int auto_increment,
+    amount int,
+    balance int,
+    time_posted bigint;
+    foreign key (user_id) references account_id
+);
+
