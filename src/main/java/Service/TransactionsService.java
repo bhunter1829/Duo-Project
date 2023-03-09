@@ -17,9 +17,9 @@ public class TransactionsService {
     public Transactions getBalanceById(int user_id) {
         Transactions transactions = TransactionsDAO.getBalanceById(user_id);
         if(TransactionsDAO.getBalanceById(user_id) != null){
-            return TransactionsDAO.getBalanceById(user_id);
+            return transactions;
         }
-        return transactions;
+        return null;
     }
 
 //    public Transactions patchBalanceById(Transactions transactions, int user_id) {

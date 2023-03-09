@@ -23,11 +23,11 @@ public class BankAccountController {
 
         app.get("login", this::postLogin);
 
-        app.get("/balance/{user_id}", this::getBalanceByUserIdHandler);
+        app.get("/Transactions/{user_id}", this::getBalanceByUserIdHandler);
 
-        app.patch("/transactions/{user_id}", this::patchBalanceByUserIdHandler);
+        app.patch("/Transactions/{user_id}", this::patchBalanceByUserIdHandler);
 
-        app.get("/transactions/{user_id}", this::getAllTransactionsByUserIdHandler);
+        app.get("/Transactions/{user_id}", this::getAllTransactionsByUserIdHandler);
 
         return app;
     }
