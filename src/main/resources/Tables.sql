@@ -3,7 +3,7 @@ DROP TABLE if exists Transactions;
 
 CREATE TABLE Accounts(
     account_id int primary key auto_increment,
-    username varchar(255),
+    username varchar(255) unique,
     password varchar(255)
 );
 
