@@ -3,8 +3,14 @@
 DROP TABLE if exists Accounts;
 --then create your tables
 CREATE TABLE Accounts(
+<<<<<<< HEAD
     AccountID int,
     FirstName varchar(255),
     LastName varchar(255),
     Balance int
+=======
+    account_id int primary key auto_increment,
+    username varchar(255) unique,
+    password varchar(255)
+>>>>>>> postman-test
 );

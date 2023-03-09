@@ -4,3 +4,27 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "--h2 is 
 --first, drop your tables (to reset your database for testing)
 --then create your tables
 afdbfdb [42001-214]
+2023-03-08 03:56:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a--then create your tables\000d\000aCREATE TABLE Accounts(\000d\000a    account_id int primary key auto_increment,\000d\000a    username varchar(255) unique,\000d\000a    password varchar(255\000d\000a)[*]"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, NULL, AS, DEFAULT, GENERATED, ON UPDATE, NOT NULL, NULL, AUTO_INCREMENT, DEFAULT ON NULL, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, NULL, CHECK, REFERENCES, AUTO_INCREMENT, ,, )"; SQL statement:
+
+--then create your tables
+CREATE TABLE Accounts(
+    account_id int primary key auto_increment,
+    username varchar(255) unique,
+    password varchar(255
+) [42001-214]
+2023-03-08 03:56:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a--then create your tables\000d\000aCREATE TABLE Accounts(\000d\000a    account_id int primary key auto_increment,\000d\000a    username varchar(255) unique,\000d\000a    password varchar(255\000d\000a)[*]"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, NULL, AS, DEFAULT, GENERATED, ON UPDATE, NOT NULL, NULL, AUTO_INCREMENT, DEFAULT ON NULL, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, NULL, CHECK, REFERENCES, AUTO_INCREMENT, ,, )"; SQL statement:
+
+--then create your tables
+CREATE TABLE Accounts(
+    account_id int primary key auto_increment,
+    username varchar(255) unique,
+    password varchar(255
+) [42001-214]
+2023-03-08 04:26:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ACCOUNT" not found; SQL statement:
+INSERT INTO account (username, password) VALUES (?,?) [42102-214]
+2023-03-08 04:27:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ACCOUNT" not found; SQL statement:
+INSERT INTO account (username, password) VALUES (?,?) [42102-214]
