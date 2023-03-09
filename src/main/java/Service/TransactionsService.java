@@ -21,4 +21,11 @@ public class TransactionsService {
         }
         return transactions;
     }
+
+//    public Transactions patchBalanceById(Transactions transactions, int user_id) {
+//        if(transactions.getUser_id() == user_id){
+//            transactionsDAO.patchBalanceById(transactions, user_id);
+//        }
+//        return null;
+//    }
 }

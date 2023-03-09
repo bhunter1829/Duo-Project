@@ -1,4 +1,4 @@
-DROP TABLE if exists Accounts;
+DROP TABLE if exists Accounts cascade;
 DROP TABLE if exists Transactions;
 
 CREATE TABLE Accounts(
@@ -11,7 +11,8 @@ CREATE TABLE Transactions(
     transaction_id int auto_increment,
     amount int,
     balance int,
+    user_id int,
     time_posted bigint,
-    foreign key (user_id) references (Accounts)account_id
+    foreign key (user_id) references Accounts(account_id)
 );
 

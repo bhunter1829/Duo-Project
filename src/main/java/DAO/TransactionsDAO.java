@@ -30,4 +30,9 @@ public class TransactionsDAO {
         }
         return null;
     }
+
+//    public Transactions patchBalanceById(){
+//
+//        return null;
+//    }
 }
