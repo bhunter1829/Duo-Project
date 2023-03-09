@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
+import java.util.List;
+
 public class BankAccountController {
     AccountService accountService;
     TransactionsService transactionsService;
@@ -25,7 +27,7 @@ public class BankAccountController {
 
         app.get("/Transactions/{user_id}", this::getBalanceByUserIdHandler);
 
-        app.patch("/Transactions/{user_id}", this::patchBalanceByUserIdHandler);
+        app.post("/Transactions/{user_id}", this::postBalanceByUserIdHandler);
 
         app.get("/Transactions/{user_id}", this::getAllTransactionsByUserIdHandler);
 
@@ -68,12 +70,21 @@ public class BankAccountController {
     }
 
     /** Update balance by user id handler */
-    private void patchBalanceByUserIdHandler(Context ctx){
-
+    private void postBalanceByUserIdHandler(Context ctx) throws JsonProcessingException{
+        ObjectMapper mapper = new ObjectMapper();
+        Transactions newTransaction = mapper.readValue(ctx.body(), Transactions.class);
+        if(newTransaction != null){
+            ctx.json(mapper.writeValueAsString(newTransaction));
+            ctx.status(200);
+        }else{
+            ctx.status(400);
+        }
     }
 
     /** Get all transactions by id handler */
-    private void getAllTransactionsByUserIdHandler(Context ctx){
-
+    private void getAllTransactionsByUserIdHandler(Context ctx) throws JsonProcessingException{
+        int user_id = Integer.parseInt(ctx.pathParam("user_id"));
+        List<Transactions> transactions = transactionsService.getTransactionsByUserId(user_id);
+        ctx.json(transactions);
     }
 }

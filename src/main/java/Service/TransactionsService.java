@@ -3,6 +3,8 @@ package Service;
 import DAO.TransactionsDAO;
 import Model.Transactions;
 
+import java.util.List;
+
 public class TransactionsService {
     TransactionsDAO transactionsDAO;
 
@@ -13,7 +15,7 @@ public class TransactionsService {
     public TransactionsService(TransactionsDAO transactionsDAO){
         this.transactionsDAO = transactionsDAO;
     }
-    /** View balance by user_id */
+    /** View balance by user_id Service */
     public Transactions getBalanceById(int user_id) {
         Transactions transactions = TransactionsDAO.getBalanceById(user_id);
         if(TransactionsDAO.getBalanceById(user_id) != null){
@@ -21,6 +23,12 @@ public class TransactionsService {
         }
         return null;
     }
+
+    /** Retrieve all transaction by user_id Service */
+    public List<Transactions> getTransactionsByUserId(int user_id) {
+        return transactionsDAO.getTransactionsByUserId(user_id);
+    }
+
 
 //    public Transactions patchBalanceById(Transactions transactions, int user_id) {
 //        if(transactions.getUser_id() == user_id){
