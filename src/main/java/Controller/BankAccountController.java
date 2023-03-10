@@ -27,9 +27,9 @@ public class BankAccountController {
 
         app.get("/Transactions/{user_id}", this::getBalanceByUserIdHandler);
 
-        app.post("/Transactions/{user_id}", this::postBalanceByUserIdHandler);
+        app.post("/Transactions", this::postTransactionHandler);
 
-        app.get("/Transactions/{user_id}", this::getAllTransactionsByUserIdHandler);
+        app.get("/Accounts/{account_id}/transactions", this::getAllTransactionsByUserIdHandler);
 
         return app;
     }
@@ -48,6 +48,8 @@ public class BankAccountController {
         }
 
     }
+
+    /** Login into existing account handler */
     private void postLogin(Context ctx) throws JsonProcessingException {
 
         Account account = mapper.readValue(ctx.body(), Account.class);
@@ -69,8 +71,8 @@ public class BankAccountController {
 
     }
 
-    /** Update balance by user id handler */
-    private void postBalanceByUserIdHandler(Context ctx) throws JsonProcessingException{
+    /** Post a new transaction handler */
+    private void postTransactionHandler(Context ctx) throws JsonProcessingException{
         ObjectMapper mapper = new ObjectMapper();
         Transactions newTransaction = mapper.readValue(ctx.body(), Transactions.class);
         if(newTransaction != null){

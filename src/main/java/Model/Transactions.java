@@ -11,7 +11,7 @@ public class Transactions {
 
     public int user_id;
 
-    public Transactions(){
+    public Transactions(int generated_transaction_id, int userId, int amount, long timePostedEpoch){
 
     }
 

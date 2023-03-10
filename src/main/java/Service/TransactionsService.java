@@ -24,6 +24,14 @@ public class TransactionsService {
         return null;
     }
 
+    /** Post a new transaction Service */
+    public Transactions newTransaction(Transactions transactions){
+        if(transactions.getAmount() != 0){
+            return transactionsDAO.insertTransaction(transactions);
+        }
+        return null;
+    }
+
     /** Retrieve all transaction by user_id Service */
     public List<Transactions> getTransactionsByUserId(int user_id) {
         return transactionsDAO.getTransactionsByUserId(user_id);
