@@ -12,7 +12,9 @@ CREATE TABLE Transactions(
     amount int,
     balance int,
     user_id int,
-    time_posted bigint,
+    time_posted_epoch bigint,
     foreign key (user_id) references Accounts(account_id)
 );
+
+
 

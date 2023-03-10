@@ -1,6 +1,10 @@
 package Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//@JsonIgnoreProperties(value = { "balance" })
 public class Transactions {
+
+
     public int transaction_id;
 
     public int amount;
@@ -11,12 +15,19 @@ public class Transactions {
 
     public int user_id;
 
-    public Transactions(int generated_transaction_id, int userId, int amount, long timePostedEpoch){
+    public Transactions(){
 
     }
 
     /** Posting a new transaction */
     public Transactions(int amount, long time_posted_epoch, int user_id){
+        this.amount = amount;
+        this.time_posted_epoch = time_posted_epoch;
+        this.user_id = user_id;
+    }
+
+    public Transactions(int transaction_id, int amount, long time_posted_epoch, int user_id){
+        this.transaction_id = transaction_id;
         this.amount = amount;
         this.time_posted_epoch = time_posted_epoch;
         this.user_id = user_id;
@@ -31,8 +42,13 @@ public class Transactions {
         this.user_id = user_id;
     }
 
-    public Transactions(int balance, int userId) {
+    public Transactions(int balance, int user_id) {
+
+        this.balance = balance;
+        this.user_id = user_id;
+
     }
+
 
     public int getTransaction_id(){
         return transaction_id;
@@ -89,7 +105,7 @@ public class Transactions {
         return "Transactions{" +
                 "transaction_id=" + transaction_id +
                 ", amount=" + amount +
-                ", balance=" + balance +
+                ", balance=" + (balance) +
                 ", time_posted_epoch=" + time_posted_epoch +
                 ", user_id=" + user_id +
                 '}';

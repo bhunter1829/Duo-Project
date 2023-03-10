@@ -23,11 +23,11 @@ public class BankAccountController {
 
         app.post("register", this::postCreateAccount);
 
-        app.get("login", this::postLogin);
+        app.get("login", this::getLogin);
 
         app.get("/Transactions/{user_id}", this::getBalanceByUserIdHandler);
 
-        app.post("/Transactions", this::postTransactionHandler);
+        app.post("/addTransaction", this::postTransactionHandler);
 
         app.get("/Accounts/{account_id}/transactions", this::getAllTransactionsByUserIdHandler);
 
@@ -50,7 +50,7 @@ public class BankAccountController {
     }
 
     /** Login into existing account handler */
-    private void postLogin(Context ctx) throws JsonProcessingException {
+    private void getLogin(Context ctx) throws JsonProcessingException {
 
         Account account = mapper.readValue(ctx.body(), Account.class);
         Account login = accountService.login(account);
@@ -62,7 +62,7 @@ public class BankAccountController {
     }
 
     /** Get balance by user id handler */
-    private void getBalanceByUserIdHandler(Context ctx){
+    private void getBalanceByUserIdHandler(Context ctx) throws JsonProcessingException{
         int user_id = Integer.parseInt(ctx.pathParam("user_id"));
         Transactions retrieveBalance = transactionsService.getBalanceById(user_id);
         if(retrieveBalance != null){
@@ -72,20 +72,20 @@ public class BankAccountController {
     }
 
     /** Post a new transaction handler */
-    private void postTransactionHandler(Context ctx) throws JsonProcessingException{
-        ObjectMapper mapper = new ObjectMapper();
-        Transactions newTransaction = mapper.readValue(ctx.body(), Transactions.class);
-        if(newTransaction != null){
-            ctx.json(mapper.writeValueAsString(newTransaction));
-            ctx.status(200);
-        }else{
+    private void postTransactionHandler(Context ctx) throws JsonProcessingException {
+
+        Transactions addTransaction = mapper.readValue(ctx.body(), Transactions.class);
+        Transactions transaction = transactionsService.newTransaction(addTransaction);
+        if (transaction != null) {
+            ctx.json(transaction);
+        } else {
             ctx.status(400);
         }
     }
 
     /** Get all transactions by id handler */
     private void getAllTransactionsByUserIdHandler(Context ctx) throws JsonProcessingException{
-        int user_id = Integer.parseInt(ctx.pathParam("user_id"));
+        int user_id = Integer.parseInt(ctx.pathParam("account_id"));
         List<Transactions> transactions = transactionsService.getTransactionsByUserId(user_id);
         ctx.json(transactions);
     }

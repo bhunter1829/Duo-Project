@@ -17,19 +17,16 @@ public class TransactionsService {
     }
     /** View balance by user_id Service */
     public Transactions getBalanceById(int user_id) {
-        Transactions transactions = TransactionsDAO.getBalanceById(user_id);
-        if(TransactionsDAO.getBalanceById(user_id) != null){
-            return transactions;
-        }
-        return null;
+
+            return transactionsDAO.getBalanceById(user_id);
+
     }
 
     /** Post a new transaction Service */
     public Transactions newTransaction(Transactions transactions){
-        if(transactions.getAmount() != 0){
+            transactions.setBalance(transactions.getAmount());
             return transactionsDAO.insertTransaction(transactions);
-        }
-        return null;
+
     }
 
     /** Retrieve all transaction by user_id Service */
